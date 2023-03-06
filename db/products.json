@@ -1,13 +1,6 @@
 {
   "products": [
     {
-      "id": 1,
-      "name": "PC Gaming",
-      "description": "PC with Ryzen 5 5600G",
-      "price": 1200,
-      "inStock": true
-    },
-    {
       "id": 2,
       "name": "Mouse Gamer",
       "description": "Mouse Reddragon Centrophorous 2",
