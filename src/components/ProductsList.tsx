@@ -3,7 +3,11 @@ import {
   useMutation,
   useQueryClient,
 } from '@tanstack/react-query'
-import { getProducts, deleteProduct } from '../api/productsAPI'
+import {
+  getProducts,
+  deleteProduct,
+  updateProduct,
+} from '../api/productsAPI'
 import { Product } from '../types/product'
 
 function ProductsList() {
@@ -22,6 +26,14 @@ function ProductsList() {
     mutationFn: deleteProduct,
     onSuccess: () => {
       console.log('Product deleted!')
+      queryClient.invalidateQueries(['products'])
+    },
+  })
+
+  const updateProductMutation = useMutation({
+    mutationFn: updateProduct,
+    onSuccess: () => {
+      console.log('Product updated!')
       queryClient.invalidateQueries(['products'])
     },
   })
@@ -47,8 +59,18 @@ function ProductsList() {
             >
               Delete
             </button>
-            <input type='checkbox' />
-            <label>inStock</label>
+            <input
+              id='in-stock'
+              type='checkbox'
+              checked={product.inStock}
+              onChange={(e) => {
+                updateProductMutation.mutate({
+                  ...product,
+                  inStock: e.currentTarget.checked,
+                })
+              }}
+            />
+            <label htmlFor='in-stock'>inStock</label>
           </div>
         </article>
       ))}
