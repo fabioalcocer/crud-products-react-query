@@ -20,6 +20,13 @@
       "description": "Keyboard Logitech 2L4K",
       "price": 1000,
       "inStock": true
+    },
+    {
+      "name": "Monitor 24",
+      "price": 2424,
+      "description": "Samsung",
+      "inStock": true,
+      "id": 6
     }
   ]
 }

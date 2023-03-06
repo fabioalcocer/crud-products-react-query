@@ -1,13 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { getProducts } from '../api/productsAPI'
-
-type Product = {
-  id: number
-  name: string
-  description: string
-  price: number
-  inStock: boolean
-}
+import { Product } from '../types/product'
 
 function ProductsList() {
   const { isLoading, data, isError, error } = useQuery<
@@ -16,6 +9,8 @@ function ProductsList() {
   >({
     queryKey: ['products'],
     queryFn: getProducts,
+    select: (products) =>
+      products.sort((a: any, b: any) => b.id - a.id),
   })
 
   if (isLoading) return <div>Loading...</div>
